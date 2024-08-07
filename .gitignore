@@ -21,3 +21,8 @@ cdk.out
 app
 
 *.env
+
+.talismanrc
+
+
+todo.txt

@@ -22,10 +22,12 @@ def post_aff_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('affirmations')
 
+    request_body = json.loads(event['body'])
+
     table.put_item(
         Item={
-            'id': event['body']['id'],
-            'affirmation': event['body']['affirmation']
+            'id': request_body['id'],
+            'affirmation': request_body['affirmation']
         }
     )
 
@@ -36,6 +38,6 @@ def post_aff_handler(event, context):
         },
         'body': json.dumps({
             'message': 'Entry Added successfully!',
-            'id': event['body']['id'],
+            'id': request_body['id'],
         })
     }

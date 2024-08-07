@@ -28,6 +28,7 @@ func NewAppStack(scope constructs.Construct, id string, props *AppStackProps) aw
 		CorsPreflight: &awsapigatewayv2.CorsPreflightOptions{
 			AllowOrigins: &[]*string{jsii.String("*")},
 			AllowMethods: &[]awsapigatewayv2.CorsHttpMethod{awsapigatewayv2.CorsHttpMethod_ANY},
+			// AllowHeaders: &[]*string{jsii.String("*")},
 		},
 		ApiName: jsii.String("affirmations-api"),
 	})
@@ -87,10 +88,10 @@ func NewAppStack(scope constructs.Construct, id string, props *AppStackProps) aw
 		},
 	})
 
-	awsdynamodb.NewTable(stack, jsii.String("aff-Table"), &awsdynamodb.TableProps{
+	awsdynamodb.NewTable(stack, jsii.String("aff-Table1"), &awsdynamodb.TableProps{
 		PartitionKey: &awsdynamodb.Attribute{
 			Name: jsii.String("id"),
-			Type: awsdynamodb.AttributeType_NUMBER,
+			Type: awsdynamodb.AttributeType_STRING,
 		},
 		TableName: jsii.String("affirmations"),
 	})
